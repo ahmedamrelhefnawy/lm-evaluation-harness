@@ -47,6 +47,7 @@ if TYPE_CHECKING:
 def downloading_tasks(  
     tasks: Optional[List[Union[str, dict, object]]] = None,
     task_manager: Optional[TaskManager] = None,
+    verbosity: str = "INFO",
 ):
 
     if task_manager is None:
