@@ -44,9 +44,24 @@ if TYPE_CHECKING:
     from lm_eval.api.task import Task
 
 
+def downloading_tasks(  
+    tasks: Optional[List[Union[str, dict, object]]] = None,
+    task_manager: Optional[TaskManager] = None,
+    verbosity: str = "INFO",
+):
+
+    if task_manager is None:
+        task_manager = TaskManager(verbosity)
+
+    task_dict = get_task_dict(tasks, task_manager)
+
+    return task_dict
+
+    
 @positional_deprecated
 def simple_evaluate(
     model,
+    task_dict, 
     model_args: Optional[Union[str, dict]] = None,
     tasks: Optional[List[Union[str, dict, object]]] = None,
     num_fewshot: Optional[int] = None,
@@ -226,10 +241,12 @@ def simple_evaluate(
             + ".db",
         )
 
-    if task_manager is None:
-        task_manager = TaskManager(verbosity)
+    # if task_manager is None:    
+    #     task_manager = TaskManager(verbosity)
 
-    task_dict = get_task_dict(tasks, task_manager)
+    # task_dict = get_task_dict(tasks, task_manager)
+    
+    task_dict = task_dict
 
     # helper function to recursively apply config overrides to leaf subtasks, skipping their constituent groups.
     # (setting of num_fewshot ; bypassing metric calculation ; setting fewshot seed)
