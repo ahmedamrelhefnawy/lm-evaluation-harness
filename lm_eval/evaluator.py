@@ -43,7 +43,20 @@ if TYPE_CHECKING:
     from lm_eval.api.model import LM
     from lm_eval.api.task import Task
 
+# Added by Ahmed Adel
+def downloading_tasks(  
+    tasks: Optional[List[Union[str, dict, object]]] = None,
+    task_manager: Optional[TaskManager] = None,
+):
 
+    if task_manager is None:
+        task_manager = TaskManager(verbosity)
+
+    task_dict = get_task_dict(tasks, task_manager)
+
+    return task_dict
+
+    
 @positional_deprecated
 def simple_evaluate(
     model,
@@ -74,6 +87,7 @@ def simple_evaluate(
     numpy_random_seed: int = 1234,
     torch_random_seed: int = 1234,
     fewshot_random_seed: int = 1234,
+    task_dict, # Added by Ahmed Adel
 ):
     """Instantiate and evaluate a model on a list of tasks.
 
@@ -226,10 +240,12 @@ def simple_evaluate(
             + ".db",
         )
 
-    if task_manager is None:
-        task_manager = TaskManager(verbosity)
+    # if task_manager is None:    ## Edited by Ahmed Adel
+    #     task_manager = TaskManager(verbosity)
 
-    task_dict = get_task_dict(tasks, task_manager)
+    # task_dict = get_task_dict(tasks, task_manager)
+    
+    task_dict = task_dict
 
     # helper function to recursively apply config overrides to leaf subtasks, skipping their constituent groups.
     # (setting of num_fewshot ; bypassing metric calculation ; setting fewshot seed)
