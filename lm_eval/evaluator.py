@@ -43,7 +43,7 @@ if TYPE_CHECKING:
     from lm_eval.api.model import LM
     from lm_eval.api.task import Task
 
-# Added by Ahmed Adel
+
 def downloading_tasks(  
     tasks: Optional[List[Union[str, dict, object]]] = None,
     task_manager: Optional[TaskManager] = None,
@@ -61,7 +61,7 @@ def downloading_tasks(
 @positional_deprecated
 def simple_evaluate(
     model,
-    task_dict, # Added by Ahmed Adel
+    task_dict, 
     model_args: Optional[Union[str, dict]] = None,
     tasks: Optional[List[Union[str, dict, object]]] = None,
     num_fewshot: Optional[int] = None,
@@ -241,7 +241,7 @@ def simple_evaluate(
             + ".db",
         )
 
-    # if task_manager is None:    ## Edited by Ahmed Adel
+    # if task_manager is None:    
     #     task_manager = TaskManager(verbosity)
 
     # task_dict = get_task_dict(tasks, task_manager)
