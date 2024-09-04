@@ -60,6 +60,7 @@ def downloading_tasks(
 @positional_deprecated
 def simple_evaluate(
     model,
+    task_dict, # Added by Ahmed Adel
     model_args: Optional[Union[str, dict]] = None,
     tasks: Optional[List[Union[str, dict, object]]] = None,
     num_fewshot: Optional[int] = None,
@@ -87,7 +88,6 @@ def simple_evaluate(
     numpy_random_seed: int = 1234,
     torch_random_seed: int = 1234,
     fewshot_random_seed: int = 1234,
-    task_dict, # Added by Ahmed Adel
 ):
     """Instantiate and evaluate a model on a list of tasks.
 
