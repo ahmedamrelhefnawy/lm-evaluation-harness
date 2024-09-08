@@ -61,7 +61,7 @@ def downloading_tasks(
 @positional_deprecated
 def simple_evaluate(
     model,
-    task_dict, 
+    task_dict: str = "", 
     model_args: Optional[Union[str, dict]] = None,
     tasks: Optional[List[Union[str, dict, object]]] = None,
     num_fewshot: Optional[int] = None,
