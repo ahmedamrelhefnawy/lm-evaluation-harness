@@ -61,7 +61,7 @@ def downloading_tasks(
 @positional_deprecated
 def simple_evaluate(
     model,
-    task_dict, 
+    task_dict: str = "", 
     model_args: Optional[Union[str, dict]] = None,
     tasks: Optional[List[Union[str, dict, object]]] = None,
     num_fewshot: Optional[int] = None,
@@ -241,12 +241,12 @@ def simple_evaluate(
             + ".db",
         )
 
-    # if task_manager is None:    
-    #     task_manager = TaskManager(verbosity)
-
-    # task_dict = get_task_dict(tasks, task_manager)
+    if task_dict == "":
+        if task_manager is None:    
+            task_manager = TaskManager(verbosity)
     
-    task_dict = task_dict
+        task_dict = get_task_dict(tasks, task_manager)
+
 
     # helper function to recursively apply config overrides to leaf subtasks, skipping their constituent groups.
     # (setting of num_fewshot ; bypassing metric calculation ; setting fewshot seed)
