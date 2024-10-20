@@ -241,15 +241,12 @@ def simple_evaluate(
             + ".db",
         )
 
-#     if task_dict == "":
-#         if task_manager is None:    
-#             task_manager = TaskManager(verbosity)
+    if task_dict == "":
+        if task_manager is None:    
+            task_manager = TaskManager(verbosity)
     
-#         task_dict = get_task_dict(tasks, task_manager)
-#     else:
-#         task_dict = task_dict
+        task_dict = get_task_dict(tasks, task_manager)
 
-    task_dict = task_dict
 
     # helper function to recursively apply config overrides to leaf subtasks, skipping their constituent groups.
     # (setting of num_fewshot ; bypassing metric calculation ; setting fewshot seed)
